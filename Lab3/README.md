@@ -30,7 +30,7 @@ The ESP32 connects to **Wi-Fi** and sends the sensor data to **ThingsBoard Cloud
 | SCL         | GPIO 22   |
 | SDA         | GPIO 21   |
 
-<img width="800" alt="bmp280_wiring_diagram" src="https://github.com/user-attachments/assets/example-bmp280-wiring.png" />
+<img width="800" alt="bmp280_wiring_diagram" src="https://github.com/Theara-Seng/iot_micropython/blob/main/Lab3/image/connection.png" />
 
 ### + Installation
 - Install **[Thonny IDE](https://thonny.org/)**  
@@ -52,7 +52,7 @@ The ESP32 connects to **Wi-Fi** and sends the sensor data to **ThingsBoard Cloud
      ```python
      WIFI_SSID     = "Your_WiFi_Name"
      WIFI_PASSWORD = "Your_WiFi_Password"
-     THINGSBOARD_HOST = "thingsboard.cloud"
+     THINGSBOARD_HOST = "mqtt.thingsboard.cloud"
      ACCESS_TOKEN = "Your_Device_Access_Token"
      ```
 
