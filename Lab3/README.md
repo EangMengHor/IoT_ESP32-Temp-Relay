@@ -1,14 +1,16 @@
-# IoT-Webserver-with-BMP280-Sensor
+# IoT-BMP280-Sensor-with-ThingsBoard-Cloud
 ## Overview
-In this lab, we will build a simple Webserver using **ESP32** and the **BMP280** sensor to measure **temperature**, **pressure**, and **altitude**. The data collected by the sensor will be displayed through a web interface hosted on the ESP32 board.
+In this lab, we will use an **ESP32** with the **BMP280** sensor to measure **temperature**, **pressure**, and **altitude**.  
+The ESP32 connects to **Wi-Fi** and sends the sensor data to **ThingsBoard Cloud** using the **MQTT protocol** for real-time IoT monitoring and visualization.
 
 ## Features
 - Utilizes **BMP280** sensor to measure:
   - Temperature (°C)
   - Pressure (hPa)
   - Altitude (m)
-- Builds a **Webserver** to display real-time sensor readings
-- Simple and user-friendly web interface accessible via Wi-Fi
+- Connects to **Wi-Fi**
+- Publishes sensor data to **ThingsBoard Cloud** using **MQTT**
+- Provides real-time IoT data visualization on the dashboard
 
 ## Equipment
 - **ESP32 Dev Board** (flashed with MicroPython firmware)  
@@ -16,6 +18,7 @@ In this lab, we will build a simple Webserver using **ESP32** and the **BMP280**
 - **Jumper Wires**  
 - **USB Cable + Laptop with Thonny IDE**  
 - **Wi-Fi access (Internet)**  
+- **ThingsBoard Cloud account** ([https://thingsboard.cloud](https://thingsboard.cloud))
 
 ## Wiring and Installation
 ### + Wiring
@@ -44,23 +47,36 @@ In this lab, we will build a simple Webserver using **ESP32** and the **BMP280**
 
 ## Usage
 1. **Configuration**
-   - Copy the `server.py` file into Thonny.  
-   - Update the Wi-Fi credentials in the user configuration section:
+   - Copy the `main.py` file into Thonny.  
+   - Update the Wi-Fi and ThingsBoard credentials in the user configuration section:
      ```python
      WIFI_SSID     = "Your_WiFi_Name"
      WIFI_PASSWORD = "Your_WiFi_Password"
+     THINGSBOARD_HOST = "thingsboard.cloud"
+     ACCESS_TOKEN = "Your_Device_Access_Token"
      ```
 
 2. **Upload and Run**
    - Upload the code to your ESP32 using Thonny.
    - Run the script.
-   - The ESP32 will display its IP address in the Thonny Shell.
-   - Open that IP address in your web browser to access the webserver and view:
+   - The ESP32 will:
+     - Connect to your Wi-Fi network
+     - Read data from the BMP280 sensor
+     - Publish sensor data to ThingsBoard Cloud via MQTT
+
+3. **View Data on ThingsBoard**
+   - Log in to your **ThingsBoard Cloud** account.
+   - Go to your device dashboard to view real-time:
      - **Temperature**
      - **Pressure**
      - **Altitude**
+   - You can also visualize the data using charts and gauges.
 
-## Working Demo (Screenshots or Videos)
-![bmp280-demo](https://github.com/user-attachments/assets/example-bmp280-demo.png)
-
-> Example: Real-time temperature, pressure, and altitude readings displayed on the web interface.
+## Code Overview
+```python
+# Key Functional Sections:
+# 1. Connect to Wi-Fi using provided SSID and password
+# 2. Initialize BMP280 sensor via I2C
+# 3. Read temperature, pressure, and altitude
+# 4. Establish MQTT connection with ThingsBoard Cloud
+# 5. Publish sensor data periodically
