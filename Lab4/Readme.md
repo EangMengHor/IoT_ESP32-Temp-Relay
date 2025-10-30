@@ -35,6 +35,9 @@ This project demonstrates a complete IoT data pipeline using an **ESP32** runnin
 
 <img width="800" alt="bmp280_wiring_diagram" src="https://github.com/Theara-Seng/iot_micropython/blob/main/Lab3/image/connection.png" />
 
+### + Configuration
+<img width="1512" height="982" alt="Node red 1" src="https://github.com/user-attachments/assets/22a43502-3264-44cf-9ce1-ab8efa3cbe30" />
+
 ## Installation
 - Install **[Thonny IDE](https://thonny.org/)**
 
@@ -261,7 +264,7 @@ This step will guide you through creating a real-time dashboard in **Grafana** t
 
 <img width="1512" height="982" alt="Grafana1" src="https://github.com/user-attachments/assets/8f4295af-60f3-43d2-ada6-8aea0ebb51cd" />
 
-<img width="1512" height="982" alt="Node red 1" src="https://github.com/user-attachments/assets/22a43502-3264-44cf-9ce1-ab8efa3cbe30" />
+
 
 
 
