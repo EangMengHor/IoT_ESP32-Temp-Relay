@@ -1,0 +1,34 @@
+# ESP32 → MQTT → Node-RED → InfluxDB → Grafana Dashboard
+
+This project demonstrates a complete IoT data pipeline using an **ESP32** running **MicroPython**, sending random sensor values via **MQTT** to **Node-RED**, which stores the data in **InfluxDB** and visualizes it in **Grafana**.
+
+## Features
+- Utilizes **BMP280** sensor to measure:
+  - Temperature (°C)
+  - Pressure (hPa)
+  - Altitude (m)
+- Connects to **Wi-Fi**
+- Publishes sensor data to **ThingsBoard Cloud** using **MQTT**
+- Provides real-time IoT data visualization on the dashboard
+
+## Equipment
+- **ESP32 Dev Board** (flashed with MicroPython firmware)  
+- **BMP280 Sensor**  
+- **Jumper Wires**  
+- **USB Cable + Laptop with Thonny IDE**  
+- **Wi-Fi access (Internet)**  
+
+## Wiring and Installation
+### + Wiring
+
+| BMP280 Pin | ESP32 Pin |
+|-------------|-----------|
+| VIN         | 3.3V      |
+| GND         | GND       |
+| SCL         | GPIO 22   |
+| SDA         | GPIO 21   |
+
+<img width="800" alt="bmp280_wiring_diagram" src="https://github.com/Theara-Seng/iot_micropython/blob/main/Lab3/image/connection.png" />
+
+### + Installation
+- Install **[Thonny IDE](https://thonny.org/)**
