@@ -118,7 +118,7 @@ Official downloads:
 
 ## Step 1 — ESP32 MicroPython Code
 
-Flash and run the code in bnp280.py on your ESP32 (e.g., using Thonny)
+Flash and run the code in bnp280.py on your ESP32 (e.g., using Thonny).
 This will generate the topic of: /aupp/esp32/random
 
 ## Step 2 — Node-RED Setup
