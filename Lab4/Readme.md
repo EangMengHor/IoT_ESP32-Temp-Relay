@@ -256,3 +256,12 @@ This step will guide you through creating a real-time dashboard in **Grafana** t
 5. Then you just need to change the topic to random, you will see the data is updating everytime the esp32 sending the random value
 
       ![grafana-inf](https://github.com/Theara-Seng/iot_micropython/blob/main/Lab4/Image/grafana.png)
+
+## Result
+
+<img width="1512" height="982" alt="Grafana1" src="https://github.com/user-attachments/assets/8f4295af-60f3-43d2-ada6-8aea0ebb51cd" />
+
+<img width="1512" height="982" alt="Node red 1" src="https://github.com/user-attachments/assets/22a43502-3264-44cf-9ce1-ab8efa3cbe30" />
+
+
+
