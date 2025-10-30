@@ -11,7 +11,7 @@ This project demonstrates a complete IoT data pipeline using an **ESP32** runnin
 - Publishes sensor data to **ThingsBoard Cloud** using **MQTT**
 - Provides real-time IoT data visualization on the dashboard
 
-##Application
+## Application
 - **Node Red**
 - **Influxdb**
 - **Grafana**
