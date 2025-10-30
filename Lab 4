@@ -115,3 +115,144 @@ Official downloads:
    Username: admin
 
    Password: admin
+
+## Step 1 — ESP32 MicroPython Code
+
+Flash and run the code in bnp280.py on your ESP32 (e.g., using Thonny)
+This will generate the topic of: /aupp/esp32/random
+
+## Step 2 — Node-RED Setup
+
+1. Go to powershell and type:
+  ```bash
+  node-red
+  ```
+After that you will see the server is running. So, you need hold the CTRL button and click on the server as shown in the image below
+
+![Nodered](https://github.com/Theara-Seng/iot_micropython/blob/main/Lab4/Image/nodered.png)
+
+
+2. Then in the Node Red, add the mqttin and the debug in order to verify the data in the node red
+
+![mqtt_node](https://github.com/Theara-Seng/iot_micropython/blob/main/Lab4/Image/mqtt-node_red.png)
+
+3. Click on the **mqtt** and change the parameter as shown in the image below
+
+![config](https://github.com/Theara-Seng/iot_micropython/blob/main/Lab4/Image/mqtt_config.png)
+
+4. Click deply and check the debug you will see the random value on the right of the image
+
+![data](https://github.com/Theara-Seng/iot_micropython/blob/main/Lab4/Image/data.png)
+
+## Step 3 — InfluxDB Setup
+1. Start InfluxDB:
+   ```bash
+   cd "C:\Program Files\InfluxData\influxdb"
+   .\influxd.exe
+   ```
+2. Open a new PowerShell window:
+   ```
+   cd "C:\Program Files\InfluxData\influxdb"
+   .\influx.exe -host 127.0.0.1
+   ```
+3. In the Node Red, install the influxDB
+
+   -> Open Node-RED → ☰ Menu → Manage palette → Install
+   
+   -> Search: node-red-contrib-influxdb
+   
+   -> Click Install.
+   
+      You’ll get two nodes in the left palette:
+      
+      InfluxDB out (write to Influx)
+      
+      InfluxDB in (query Influx)
+
+4. After That, config the node-red with influxDB,
+   
+![node-inf](https://github.com/Theara-Seng/iot_micropython/blob/main/Lab4/Image/node_red_inf.png)
+
+ - In the Function block add the code below
+   ```bash
+   msg.measurement = "random";   
+   msg.payload = { value: Number(msg.payload) };
+   return msg;
+   ```
+
+   ![node-inf](https://github.com/Theara-Seng/iot_micropython/blob/main/Lab4/Image/function.png)
+
+- In the InfluxDB out you need to add the measurement and the data as shown in the image below
+
+ ![node-inf](https://github.com/Theara-Seng/iot_micropython/blob/main/Lab4/Image/random.png)
+
+  ![node-inf](https://github.com/Theara-Seng/iot_micropython/blob/main/Lab4/Image/influxdbblock.png)
+
+- Then click deploy
+
+5. In the influxDB powershell, you need to create a database for Node-RED
+   ```
+   CREATE DATABASE aupp_lab;
+   SHOW DATABASES;
+   USE aupp_lab;
+   ```
+   -- Then you do
+   ```
+   SELECT * FROM random ORDER BY time DESC LIMIT 5;
+   ```
+   You will see the data which store in the influxDB as shown in the image below
+
+     ![node-inf](https://github.com/Theara-Seng/iot_micropython/blob/main/Lab4/Image/influxdbdata.png)
+
+## Launch Grafana
+
+1. Open Grafana in your browser
+   ```bash
+   http://localhost:3000
+   ```
+   Default Credentials:
+
+      - Username: admin
+      - Password: admin
+        
+   Grafana will prompt you to set a new password on first login.
+
+2. Add InfluxDB as a Data Source
+   - On the left sidebar, click (Settings) → Data Sources
+
+   - Click Add data source
+
+   - Select InfluxDB
+
+   - Configure the connection:
+     
+3. Configure InfluxDB Connection
+
+   | **Setting** | **Value** |
+   |--------------|------------|
+   | **Query Language** | InfluxQL |
+   | **URL** | `http://127.0.0.1:8086` |
+   | **Database** | `aupp_lab` |
+   | **User / Password** | *(blank unless you configured authentication)* |
+   | **HTTP Method** | GET |
+   | **Version** | 1.8+ |
+
+4. Create a Dashboard 
+
+This step will guide you through creating a real-time dashboard in **Grafana** to visualize the ESP32 data stored in **InfluxDB**.
+
+---
+
+- In Grafana’s left sidebar, click the **“+” (Create)** icon
+   
+- Select **Dashboard → Add new panel**
+
+- Choose Your Data Source
+
+   - Under **Query**, select your InfluxDB data source (e.g., `InfluxDB - aupp_lab`)
+     
+   - This connects Grafana to the database where your Node-RED flow is saving data
+  
+5. Then you just need to change the topic to random, you will see the data is updating everytime the esp32 sending the random value
+
+      ![grafana-inf](https://github.com/Theara-Seng/iot_micropython/blob/main/Lab4/Image/grafana.png)
