@@ -1,0 +1,5 @@
+# LAB 5 - Mobile App DC Motor Control with Grafana Dashboard
+
+This project will demonstrate the designing of a mobile application (using MIT App Inventor) to remotely control a DC motor via an ESP32 (MicroPython) web server. 
+The ESP32 will expose HTTP endpoints (/forward, /backward, /stop, /speed), while the mobile app will send commands over Wi-Fi to control direction and speed.
+All control actions and speed updates will be recorded to an IoT dashboard (InfluxDB + Grafana) for real-time monitoring and analysis.
